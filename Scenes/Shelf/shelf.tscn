@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://lbkhfjfkivtc"]
+
+[ext_resource type="Texture2D" uid="uid://dpfyex66fnju1" path="res://Scenes/Shelf/cadb4fd34c10ec543cf0b6868d6a4665.jpg" id="1_n2oxf"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f3d2w"]
+albedo_texture = ExtResource("1_n2oxf")
+
+[node name="Shelf" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+use_collision = true
+collision_layer = 5
+material = SubResource("StandardMaterial3D_f3d2w")

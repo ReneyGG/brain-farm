@@ -7,6 +7,7 @@ var speed = 5
 var jump_speed = 5
 var mouse_sensitivity = 0.002
 var current_reel
+var current_tool = "phone"
 
 func _ready():
 	randomize()
@@ -35,14 +36,39 @@ func _physics_process(delta):
 	if is_on_floor() and Input.is_action_just_pressed("jump"):
 		velocity.y = jump_speed
 	
-	if Input.is_action_pressed("next_reel"):
-		hands.frame = 1
-		if Input.is_action_just_pressed("next_reel"):
-			current_reel = randi_range(0,Reels.reel_types.size()-1)
-			$CanvasLayer/Control/ColorRect.color = Reels.reel_types[current_reel]
-	elif Input.is_action_pressed("show_reel"):
-		hands.frame = 2
-		if $Camera3D/RayCast3D.is_colliding():
-			$Camera3D/RayCast3D.get_collider().get_parent().add_attention(current_reel)
+	if Input.is_action_just_pressed("use") and $Camera3D/UseRayCast.is_colliding():
+		pass
+	
+	if current_tool == "phone":
+		if Input.is_action_pressed("next_reel"):
+			hands.frame = 1
+			if Input.is_action_just_pressed("next_reel"):
+				current_reel = random_reel()
+				$CanvasLayer/Control/ColorRect.color = Reels.reel_types[current_reel]
+		elif Input.is_action_pressed("show_reel"):
+			hands.frame = 2
+			if $Camera3D/RayCast3D.is_colliding():
+				if $Camera3D/RayCast3D.get_collider().is_in_group("brain"):
+					$Camera3D/RayCast3D.get_collider().get_parent().add_attention(current_reel)
+		else:
+			hands.frame = 0
+	elif current_tool == "wrench":
+		if Input.is_action_pressed("next_reel"):
+			hands.frame = 1
+			if Input.is_action_just_pressed("next_reel"):
+				current_reel = random_reel()
+				$CanvasLayer/Control/ColorRect.color = Reels.reel_types[current_reel]
+		elif Input.is_action_pressed("show_reel"):
+			hands.frame = 2
+			if $Camera3D/RayCast3D.is_colliding():
+				if $Camera3D/RayCast3D.get_collider().is_in_group("brain"):
+					$Camera3D/RayCast3D.get_collider().get_parent().add_attention(current_reel)
+		else:
+			hands.frame = 0
+
+func random_reel():
+	var next = randi_range(0,Reels.reel_types.size()-1)
+	if next == current_reel:
+		return random_reel()
 	else:
-		hands.frame = 0
+		return next
