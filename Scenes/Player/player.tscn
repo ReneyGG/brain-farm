@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://cgf86w1kpqxth"]
+[gd_scene load_steps=9 format=3 uid="uid://cgf86w1kpqxth"]
 
 [ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_ledsk"]
 [ext_resource type="Texture2D" uid="uid://cekh0tl43g06j" path="res://Scenes/Player/Hands/idle.png" id="2_jqxw3"]
 [ext_resource type="Texture2D" uid="uid://dm7jyeuwo7gav" path="res://Scenes/Player/Hands/next.png" id="3_jiuru"]
 [ext_resource type="Texture2D" uid="uid://cdi6sw52tn3q" path="res://Scenes/Player/Hands/show.png" id="4_xhg2l"]
+[ext_resource type="Texture2D" uid="uid://d0i53u8fistw5" path="res://Scenes/Player/Hands/wrench_idle.png" id="5_hj2ta"]
+[ext_resource type="Texture2D" uid="uid://kaa17ctmclbe" path="res://Scenes/Player/Hands/wrench_interact.png" id="6_00jmr"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_s8g6x"]
 
@@ -18,6 +20,12 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("4_xhg2l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_hj2ta")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_00jmr")
 }],
 "loop": true,
 "name": &"hands",

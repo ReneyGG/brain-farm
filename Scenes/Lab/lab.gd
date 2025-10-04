@@ -12,4 +12,4 @@ func _physics_process(delta):
 func _on_timer_timeout():
 	for i in $Brains.get_children():
 		currency += i.generate_value / 10.0
-		$Level/CSGBox3D2/Label3D.text = str(int(currency))
+		$Level/Label3D.text = str(int(currency))

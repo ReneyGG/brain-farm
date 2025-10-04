@@ -1,13 +1,16 @@
 [gd_scene load_steps=3 format=3 uid="uid://lbkhfjfkivtc"]
 
-[ext_resource type="Texture2D" uid="uid://dpfyex66fnju1" path="res://Scenes/Shelf/cadb4fd34c10ec543cf0b6868d6a4665.jpg" id="1_n2oxf"]
+[ext_resource type="Script" path="res://Scenes/Shelf/shelf.gd" id="1_2ecni"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f3d2w"]
-albedo_texture = ExtResource("1_n2oxf")
+[sub_resource type="BoxShape3D" id="BoxShape3D_scdum"]
+size = Vector3(0.736206, 1, 0.831055)
 
 [node name="Shelf" type="Node3D"]
+script = ExtResource("1_2ecni")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-use_collision = true
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
 collision_layer = 5
-material = SubResource("StandardMaterial3D_f3d2w")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.131897, 0, -0.0844727)
+shape = SubResource("BoxShape3D_scdum")

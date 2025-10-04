@@ -36,35 +36,40 @@ func _physics_process(delta):
 	if is_on_floor() and Input.is_action_just_pressed("jump"):
 		velocity.y = jump_speed
 	
-	if Input.is_action_just_pressed("use") and $Camera3D/UseRayCast.is_colliding():
-		pass
+	if Input.is_action_just_pressed("next_reel") or Input.is_action_just_pressed("show_reel"):
+		if $Camera3D/UseRayCast.is_colliding():
+			tool_switch()
+			return
 	
 	if current_tool == "phone":
 		if Input.is_action_pressed("next_reel"):
-			hands.frame = 1
 			if Input.is_action_just_pressed("next_reel"):
 				current_reel = random_reel()
 				$CanvasLayer/Control/ColorRect.color = Reels.reel_types[current_reel]
+			hands.frame = 1
 		elif Input.is_action_pressed("show_reel"):
-			hands.frame = 2
 			if $Camera3D/RayCast3D.is_colliding():
 				if $Camera3D/RayCast3D.get_collider().is_in_group("brain"):
 					$Camera3D/RayCast3D.get_collider().get_parent().add_attention(current_reel)
+			hands.frame = 2
 		else:
 			hands.frame = 0
+	
 	elif current_tool == "wrench":
 		if Input.is_action_pressed("next_reel"):
-			hands.frame = 1
-			if Input.is_action_just_pressed("next_reel"):
-				current_reel = random_reel()
-				$CanvasLayer/Control/ColorRect.color = Reels.reel_types[current_reel]
-		elif Input.is_action_pressed("show_reel"):
-			hands.frame = 2
+			hands.frame = 4
 			if $Camera3D/RayCast3D.is_colliding():
-				if $Camera3D/RayCast3D.get_collider().is_in_group("brain"):
-					$Camera3D/RayCast3D.get_collider().get_parent().add_attention(current_reel)
+				$Camera3D/RayCast3D.get_collider().get_parent().fix()
+		elif Input.is_action_pressed("show_reel"):
+			pass
 		else:
-			hands.frame = 0
+			hands.frame = 3
+
+func tool_switch():
+	if current_tool == "phone":
+		current_tool = "wrench"
+	else:
+		current_tool = "phone"
 
 func random_reel():
 	var next = randi_range(0,Reels.reel_types.size()-1)

@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dwy5cbs3c1u1o"]
+[gd_scene load_steps=10 format=3 uid="uid://dwy5cbs3c1u1o"]
 
 [ext_resource type="Script" path="res://Scenes/Brain/brain.gd" id="1_lhhq4"]
 [ext_resource type="Texture2D" uid="uid://dvpyx18xjrqh2" path="res://Scenes/Brain/brain.jpg" id="1_pbldk"]
+[ext_resource type="PackedScene" uid="uid://qqhio3usmy3y" path="res://Scenes/Brain/hackye_model/hackyeah_models.glb" id="3_7afci"]
+[ext_resource type="Texture2D" uid="uid://cssbnsdk0mjaq" path="res://Scenes/Brain/hackye_model/mozg.png" id="4_x2g3t"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rotiy"]
 
@@ -10,6 +12,12 @@ albedo_texture = ExtResource("1_pbldk")
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_t7kkg"]
 material = SubResource("StandardMaterial3D_lxp8t")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o6qk3"]
+albedo_color = Color(0.377163, 0.377163, 0.377163, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_1p5gh"]
+material = SubResource("StandardMaterial3D_o6qk3")
 
 [node name="Brain" type="Node3D"]
 script = ExtResource("1_lhhq4")
@@ -23,6 +31,7 @@ shape = SubResource("CapsuleShape3D_rotiy")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
 mesh = SubResource("CapsuleMesh_t7kkg")
 
 [node name="Label3D" type="Label3D" parent="."]
@@ -33,4 +42,29 @@ text = "1.0"
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 
+[node name="FixTimer" type="Timer" parent="."]
+wait_time = 10.0
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.06393, 0)
+emitting = false
+mesh = SubResource("SphereMesh_1p5gh")
+direction = Vector3(0, 1, 0)
+spread = 10.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 3.0
+scale_amount_min = 0.4
+scale_amount_max = 0.8
+color = Color(0.989399, 0.989399, 0.989399, 1)
+
+[node name="hackyeah_models" parent="." instance=ExtResource("3_7afci")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.47613, -0.167329, -4.96691)
+
+[node name="Sprite3D" type="Sprite3D" parent="hackyeah_models"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -1.4628, 1.2689, 4.96213)
+billboard = 2
+texture = ExtResource("4_x2g3t")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="FixTimer" to="." method="_on_fix_timer_timeout"]
