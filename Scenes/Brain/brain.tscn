@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://dwy5cbs3c1u1o"]
+
+[ext_resource type="Script" path="res://Scenes/Brain/brain.gd" id="1_lhhq4"]
+[ext_resource type="Texture2D" uid="uid://dvpyx18xjrqh2" path="res://Scenes/Brain/brain.jpg" id="1_pbldk"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rotiy"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lxp8t"]
+albedo_texture = ExtResource("1_pbldk")
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_t7kkg"]
+material = SubResource("StandardMaterial3D_lxp8t")
+
+[node name="Brain" type="Node3D"]
+script = ExtResource("1_lhhq4")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+collision_layer = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_rotiy")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_t7kkg")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.16649, 0)
+billboard = 2
+text = "1.0"
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
