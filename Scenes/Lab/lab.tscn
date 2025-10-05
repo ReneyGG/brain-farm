@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cgwk17gpehx33"]
+[gd_scene load_steps=12 format=3 uid="uid://cgwk17gpehx33"]
 
 [ext_resource type="Script" path="res://Scenes/Lab/lab.gd" id="1_7tb7q"]
 [ext_resource type="PackedScene" uid="uid://cgf86w1kpqxth" path="res://Scenes/Player/player.tscn" id="1_iddxa"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://lbkhfjfkivtc" path="res://Scenes/Shelf/shelf.tscn" id="4_2ts4f"]
 [ext_resource type="PackedScene" uid="uid://db0gsaqaehs3k" path="res://Scenes/Agregator/agregator.tscn" id="5_kbrda"]
 [ext_resource type="PackedScene" uid="uid://crqqukybn6qeo" path="res://Scenes/Lab/hackyeahlevell/hackyeahlevel.glb" id="6_bp7y2"]
+[ext_resource type="AudioStream" uid="uid://beo0vihj02viw" path="res://SFX/brain rot main music.mp3" id="7_e1t42"]
 
 [sub_resource type="Environment" id="Environment_db1p8"]
 background_mode = 1
@@ -30,6 +31,10 @@ environment = SubResource("Environment_db1p8")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.05
+
+[node name="FlickerTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
 
 [node name="Player" parent="." instance=ExtResource("1_iddxa")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.79112, 0, 4.69295)
@@ -128,4 +133,11 @@ transform = Transform3D(-0.925646, 0, 0.37839, 0, 1, 0, -0.37839, 0, -0.925646, 
 [node name="Agregator" parent="." instance=ExtResource("5_kbrda")]
 transform = Transform3D(-0.358417, 0, -0.933562, 0, 1, 0, 0.933562, 0, -0.358417, -2.2857, 0.831089, 7.62682)
 
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.73221, 1.7818, -0.193964)
+stream = ExtResource("7_e1t42")
+volume_db = -24.0
+autoplay = true
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="FlickerTimer" to="." method="_on_flicker_timer_timeout"]

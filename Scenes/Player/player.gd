@@ -4,7 +4,7 @@ extends CharacterBody3D
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var speed = 5
-var jump_speed = 5
+var jump_speed = 4
 var mouse_sensitivity = 0.002
 var current_reel
 var current_tool = "phone"
@@ -15,6 +15,7 @@ func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	$CanvasLayer/Control/GUI/Reels.modulate = Reels.reel_types[0]
 	current_reel = 0
+	$AudioReel0.play()
 
 func _input(event):
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
@@ -25,18 +26,22 @@ func _input(event):
 func game_over():
 	over = true
 	$CanvasLayer/Control/GUI/Reels.modulate = Color("000000")
+	$AudioReel0.stop()
+	$AudioReel1.stop()
+	$AudioReel2.stop()
+	$Walk.stop()
+	$AudioReel0.volume_db = -60
+	$AudioReel1.volume_db = -60
+	$AudioReel2.volume_db = -60
 
 func _physics_process(delta):
 	velocity.y += -gravity * delta
 	var input = Input.get_vector("left", "right", "forward", "back")
 	var movement_dir = transform.basis * Vector3(input.x, 0, input.y)
 	#if movement_dir.length() != 0:
-		#$AnimationPlayer.play("walk")
-	#else:
-		#$AnimationPlayer.play("idle")
-	if not over:
-		velocity.x = movement_dir.x * speed
-		velocity.z = movement_dir.z * speed
+	
+	velocity.x = movement_dir.x * speed
+	velocity.z = movement_dir.z * speed
 	
 	move_and_slide()
 	if over:
@@ -82,10 +87,18 @@ func _physics_process(delta):
 func next_reel():
 	current_reel = random_reel()
 	$CanvasLayer/Control/GUI/Reels.modulate = Reels.reel_types[current_reel]
+	$CanvasLayer/Control/GUI/Reels.play(random_scene())
+	$AudioReel0.stop()
+	$AudioReel1.stop()
+	$AudioReel2.stop()
+	get_node("AudioReel"+$CanvasLayer/Control/GUI/Reels.animation).play()
 
 func tool_switch():
 	if current_tool == "phone":
 		current_tool = "wrench"
+		$AudioReel0.stop()
+		$AudioReel1.stop()
+		$AudioReel2.stop()
 	else:
 		current_tool = "phone"
 
@@ -95,3 +108,10 @@ func random_reel():
 		return random_reel()
 	else:
 		return next
+
+func random_scene():
+	var next = randi_range(0,2)
+	if str(next) == $CanvasLayer/Control/GUI/Reels.animation:
+		return random_scene()
+	else:
+		return str(next)

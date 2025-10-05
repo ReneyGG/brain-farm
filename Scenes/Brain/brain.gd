@@ -9,7 +9,7 @@ func _ready():
 	randomize()
 	new_reel()
 	$CPUParticles3D.emitting = false
-	$FixTimer.start(randf_range(6.0, 15.0))
+	$FixTimer.start(randf_range(15.0, 30.0))
 
 func _physics_process(_delta):
 	attention -= 0.001
@@ -24,11 +24,11 @@ func add_attention(reel):
 func new_reel():
 	need_reel = randi_range(0,Reels.reel_types.size()-1)
 	$Label3D.modulate = Reels.reel_types[need_reel]
-	$Timer.start(randf_range(1.0, 5.0))
+	$Timer.start(randf_range(2.0, 8.0))
 
 func fix():
 	$CPUParticles3D.emitting = false
-	$FixTimer.start(randf_range(6.0, 15.0))
+	$FixTimer.start(randf_range(15.0, 30.0))
 	generate = 10.0
 
 func _on_timer_timeout():

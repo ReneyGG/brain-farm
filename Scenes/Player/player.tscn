@@ -1,19 +1,30 @@
-[gd_scene load_steps=22 format=3 uid="uid://cgf86w1kpqxth"]
+[gd_scene load_steps=33 format=3 uid="uid://cgf86w1kpqxth"]
 
 [ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_ledsk"]
 [ext_resource type="Script" path="res://Scenes/Player/camera_3d.gd" id="2_gd3yb"]
 [ext_resource type="Texture2D" uid="uid://cy05mu11ft2jh" path="res://Scenes/Player/Reels/1/tik_tok_1.png" id="3_aa6b4"]
 [ext_resource type="Texture2D" uid="uid://c1oy0fajfpuu3" path="res://Scenes/Player/Reels/1/tik_tok_1_2.png" id="4_41wue"]
+[ext_resource type="Texture2D" uid="uid://bmrrwtifa0o47" path="res://Scenes/Player/Reels/2/tik_tok_2_1.png" id="5_d513j"]
+[ext_resource type="Texture2D" uid="uid://bss71wmv708n0" path="res://Scenes/Player/Reels/2/tik_tok_2_2.png" id="6_hsd25"]
 [ext_resource type="Texture2D" uid="uid://drp6ngvjaf6si" path="res://Scenes/Player/NewHands/scroll1.png" id="7_4scsv"]
+[ext_resource type="Texture2D" uid="uid://4gjpesqjkc6s" path="res://Scenes/Player/Reels/3/tik_tok_3_1.png" id="7_6v2bd"]
+[ext_resource type="Texture2D" uid="uid://cimobw2u7fkma" path="res://Scenes/Player/Reels/3/tik_tok_3_2.png" id="8_lx2tf"]
 [ext_resource type="Texture2D" uid="uid://br7xscf5b3gnh" path="res://Scenes/Player/NewHands/scroll2.png" id="8_s7hpe"]
+[ext_resource type="Texture2D" uid="uid://dpvaky6w1kgg5" path="res://Scenes/Player/Reels/3/tik_tok_3_3.png" id="9_jijt5"]
 [ext_resource type="Texture2D" uid="uid://b108tdpcmlr8w" path="res://Scenes/Player/NewHands/bonk.png" id="9_oqksx"]
 [ext_resource type="Texture2D" uid="uid://dxe5tlir2j4mg" path="res://Scenes/Player/NewHands/scroll3.png" id="9_xwnnq"]
 [ext_resource type="Script" path="res://Scenes/Player/shake.gd" id="10_1w665"]
+[ext_resource type="Texture2D" uid="uid://ct0elhtiw1ace" path="res://Scenes/Player/Reels/3/tik_tok_3_4.png" id="10_8pk43"]
 [ext_resource type="Shader" path="res://Scenes/Player/shader.gdshader" id="10_ga6gf"]
 [ext_resource type="Texture2D" uid="uid://bmhbr4n7yq7ib" path="res://Scenes/Player/NewHands/bonk2.png" id="10_lxoij"]
 [ext_resource type="Texture2D" uid="uid://mtnl8c0xdn58" path="res://Scenes/Player/NewHands/scroll4.png" id="10_q5ius"]
+[ext_resource type="Texture2D" uid="uid://ctqo1tiodxcb5" path="res://Scenes/Player/Reels/3/tik_tok_3_5.png" id="11_5ecb4"]
 [ext_resource type="Texture2D" uid="uid://202bcrwoqpxh" path="res://Scenes/Player/NewHands/scroll5.png" id="11_csmfu"]
 [ext_resource type="Texture2D" uid="uid://bsywbwgilw080" path="res://Scenes/Player/NewHands/patrznatiktok.png" id="12_3bbmx"]
+[ext_resource type="AudioStream" uid="uid://bf33jus13ger3" path="res://SFX/tik tok 1 taniec.mp3" id="22_qi7my"]
+[ext_resource type="AudioStream" uid="uid://bqav45s58uftf" path="res://SFX/asmr.mp3" id="23_74rlm"]
+[ext_resource type="AudioStream" uid="uid://bax8dd3atvuay" path="res://SFX/KOCIK TIK TOK!!!.mp3" id="24_xcmu5"]
+[ext_resource type="AudioStream" uid="uid://cne6afweh4n32" path="res://SFX/chodzenie.mp3" id="25_cacn3"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_s8g6x"]
 
@@ -27,7 +38,38 @@ animations = [{
 "texture": ExtResource("4_41wue")
 }],
 "loop": true,
+"name": &"0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_d513j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_hsd25")
+}],
+"loop": true,
 "name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_6v2bd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_lx2tf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_jijt5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_8pk43")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_5ecb4")
+}],
+"loop": true,
+"name": &"2",
 "speed": 5.0
 }]
 
@@ -199,9 +241,8 @@ position = Vector2(612, 794)
 rotation = -0.257736
 scale = Vector2(0.956069, 0.956069)
 sprite_frames = SubResource("SpriteFrames_3ga5x")
-animation = &"1"
-autoplay = "1"
-frame_progress = 0.839986
+animation = &"2"
+autoplay = "0"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/Control/GUI"]
 modulate = Color(0.65834, 0.65834, 0.65834, 1)
@@ -223,3 +264,19 @@ grow_vertical = 2
 libraries = {
 "": SubResource("AnimationLibrary_rrhvy")
 }
+
+[node name="AudioReel0" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("22_qi7my")
+volume_db = -36.0
+
+[node name="AudioReel1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("23_74rlm")
+volume_db = -33.0
+
+[node name="AudioReel2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("24_xcmu5")
+volume_db = -51.0
+
+[node name="Walk" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("25_cacn3")
+volume_db = -15.0
