@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://cgf86w1kpqxth"]
+[gd_scene load_steps=34 format=3 uid="uid://cgf86w1kpqxth"]
 
 [ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_ledsk"]
 [ext_resource type="Script" path="res://Scenes/Player/camera_3d.gd" id="2_gd3yb"]
@@ -25,6 +25,7 @@
 [ext_resource type="AudioStream" uid="uid://bqav45s58uftf" path="res://SFX/asmr.mp3" id="23_74rlm"]
 [ext_resource type="AudioStream" uid="uid://bax8dd3atvuay" path="res://SFX/KOCIK TIK TOK!!!.mp3" id="24_xcmu5"]
 [ext_resource type="AudioStream" uid="uid://cne6afweh4n32" path="res://SFX/chodzenie.mp3" id="25_cacn3"]
+[ext_resource type="PackedScene" uid="uid://bvpx4o8abtw50" path="res://Scenes/Pause/pause.tscn" id="26_cluvm"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_s8g6x"]
 
@@ -280,3 +281,5 @@ volume_db = -51.0
 [node name="Walk" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("25_cacn3")
 volume_db = -15.0
+
+[node name="Pause" parent="." instance=ExtResource("26_cluvm")]

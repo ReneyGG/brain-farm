@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://cgwk17gpehx33"]
+[gd_scene load_steps=13 format=3 uid="uid://cgwk17gpehx33"]
 
 [ext_resource type="Script" path="res://Scenes/Lab/lab.gd" id="1_7tb7q"]
 [ext_resource type="PackedScene" uid="uid://cgf86w1kpqxth" path="res://Scenes/Player/player.tscn" id="1_iddxa"]
 [ext_resource type="PackedScene" uid="uid://dwy5cbs3c1u1o" path="res://Scenes/Brain/brain.tscn" id="2_mqfq4"]
+[ext_resource type="FontFile" uid="uid://chm0moy013xuu" path="res://times.ttf" id="3_p4whe"]
 [ext_resource type="PackedScene" uid="uid://lbkhfjfkivtc" path="res://Scenes/Shelf/shelf.tscn" id="4_2ts4f"]
 [ext_resource type="PackedScene" uid="uid://db0gsaqaehs3k" path="res://Scenes/Agregator/agregator.tscn" id="5_kbrda"]
 [ext_resource type="PackedScene" uid="uid://crqqukybn6qeo" path="res://Scenes/Lab/hackyeahlevell/hackyeahlevel.glb" id="6_bp7y2"]
@@ -52,6 +53,7 @@ material = SubResource("StandardMaterial3D_71tp2")
 transform = Transform3D(0.0534655, 0.195227, 0.9793, -0.0106427, 0.980758, -0.194937, -0.998513, 0, 0.0545145, -7.77505, 3.07692, 4.17044)
 modulate = Color(0.129412, 0.596078, 0.211765, 1)
 text = "0"
+font = ExtResource("3_p4whe")
 font_size = 64
 
 [node name="hackyeahlevel" parent="Level" instance=ExtResource("6_bp7y2")]
@@ -139,5 +141,9 @@ stream = ExtResource("7_e1t42")
 volume_db = -24.0
 autoplay = true
 
+[node name="OverTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="FlickerTimer" to="." method="_on_flicker_timer_timeout"]
+[connection signal="timeout" from="OverTimer" to="." method="_on_over_timer_timeout"]

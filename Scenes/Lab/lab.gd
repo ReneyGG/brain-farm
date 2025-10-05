@@ -34,6 +34,10 @@ func over():
 	$Level/SpotLight3D4.hide()
 	$Level/SpotLight3D5.hide()
 	$Level/OmniLight3D2.light_color = Color("ce2344")
+	$OverTimer.start(5)
 
 func _on_flicker_timer_timeout():
 	flicker = randf_range(0.0, 0.2)
+
+func _on_over_timer_timeout():
+	get_tree().quit()

@@ -13,11 +13,11 @@ uv1_offset = Vector3(0.06, -0.15, 0)
 [sub_resource type="BoxMesh" id="BoxMesh_1la7h"]
 material = SubResource("StandardMaterial3D_y1nln")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nqosb"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l6ck8"]
 albedo_color = Color(0.377163, 0.377163, 0.377163, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_opssm"]
-material = SubResource("StandardMaterial3D_nqosb")
+material = SubResource("StandardMaterial3D_l6ck8")
 
 [node name="Agregator" type="Node3D"]
 script = ExtResource("1_88ghj")
@@ -32,6 +32,7 @@ shape = SubResource("BoxShape3D_gw7eu")
 mesh = SubResource("BoxMesh_1la7h")
 
 [node name="CPUParticles3D" type="CPUParticles3D" parent="."]
+transparency = 0.1
 mesh = SubResource("SphereMesh_opssm")
 direction = Vector3(0, 1, 0)
 spread = 10.0
@@ -39,7 +40,7 @@ gravity = Vector3(0, 0, 0)
 initial_velocity_min = 1.0
 initial_velocity_max = 3.0
 scale_amount_min = 0.4
-scale_amount_max = 0.8
+scale_amount_max = 0.6
 color = Color(0.989399, 0.989399, 0.989399, 1)
 
 [node name="Timer" type="Timer" parent="."]
