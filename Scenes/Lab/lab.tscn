@@ -9,6 +9,9 @@
 
 [sub_resource type="Environment" id="Environment_db1p8"]
 background_mode = 1
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0924
+volumetric_fog_detail_spread = 6.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_71tp2"]
 albedo_color = Color(0, 0, 0, 1)
@@ -75,36 +78,36 @@ omni_range = 6.0
 [node name="OmniLight3D2" type="OmniLight3D" parent="Level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.70498, 2.96021, 4.15279)
 light_color = Color(0, 0.54902, 0, 1)
-light_energy = 0.2
+light_energy = 0.5
 omni_range = 4.0
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Level"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -5.94707, 5.46552, 2.33157)
-light_energy = 0.1
+light_energy = 0.05
 spot_attenuation = -2.58
 spot_angle = 17.2
 
 [node name="SpotLight3D2" type="SpotLight3D" parent="Level"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -6.11962, 5.46552, 5.97848)
-light_energy = 0.1
+light_energy = 0.05
 spot_attenuation = -2.58
 spot_angle = 17.2
 
 [node name="SpotLight3D3" type="SpotLight3D" parent="Level"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -6.21165, 5.46552, 7.80748)
-light_energy = 0.1
+light_energy = 0.05
 spot_attenuation = -2.58
 spot_angle = 17.2
 
 [node name="SpotLight3D4" type="SpotLight3D" parent="Level"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -2.45011, 5.46552, 7.62343)
-light_energy = 0.1
+light_energy = 0.05
 spot_attenuation = -2.58
 spot_angle = 17.2
 
 [node name="SpotLight3D5" type="SpotLight3D" parent="Level"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -3.26683, 5.46552, 2.55053)
-light_energy = 0.1
+light_energy = 0.05
 spot_attenuation = -2.58
 spot_angle = 17.2
 

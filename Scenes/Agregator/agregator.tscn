@@ -43,7 +43,7 @@ scale_amount_max = 0.8
 color = Color(0.989399, 0.989399, 0.989399, 1)
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 6.0
+wait_time = 10.0
 one_shot = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

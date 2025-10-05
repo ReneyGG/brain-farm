@@ -2,14 +2,14 @@ extends Node3D
 
 var attention := 1.0
 var generate = 10.0
-var generate_value := 0
+var generate_value := 0.0
 var need_reel = 0
 
 func _ready():
 	randomize()
 	new_reel()
 	$CPUParticles3D.emitting = false
-	$FixTimer.start()
+	$FixTimer.start(randf_range(6.0, 15.0))
 
 func _physics_process(_delta):
 	attention -= 0.001
@@ -28,11 +28,12 @@ func new_reel():
 
 func fix():
 	$CPUParticles3D.emitting = false
-	$FixTimer.start()
+	$FixTimer.start(randf_range(6.0, 15.0))
+	generate = 10.0
 
 func _on_timer_timeout():
 	new_reel()
 
 func _on_fix_timer_timeout():
-	pass
-	#$CPUParticles3D.emitting = true
+	$CPUParticles3D.emitting = true
+	generate = 0.0
